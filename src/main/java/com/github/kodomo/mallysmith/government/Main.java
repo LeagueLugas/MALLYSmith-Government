@@ -1,8 +1,9 @@
 package com.github.kodomo.mallysmith.government;
 
 import com.github.kodomo.mallysmith.government.bean.BeanContainer;
-import com.github.kodomo.mallysmith.government.service.bank.BankGrpcStub;
-import com.github.kodomo.mallysmith.government.service.user.UserGrpcStub;
+import com.github.kodomo.mallysmith.government.database.repository.publicservant.PublicServantRepository;
+import com.github.kodomo.mallysmith.government.stub.bank.BankGrpcStub;
+import com.github.kodomo.mallysmith.government.stub.user.UserGrpcStub;
 
 import java.io.IOException;
 
@@ -18,6 +19,7 @@ public class Main {
     private static void setup() {
         BeanContainer.registerBean(UserGrpcStub.class);
         BeanContainer.registerBean(BankGrpcStub.class);
+        BeanContainer.registerBean(PublicServantRepository.class);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.github.kodomo.mallysmith.government.service.user;
+package com.github.kodomo.mallysmith.government.stub.user;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

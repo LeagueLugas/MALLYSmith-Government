@@ -1,6 +1,6 @@
 package com.github.kodomo.mallysmith.government;
 
-import com.github.kodomo.mallysmith.government.service.core.GovernmentGrpcService;
+import com.github.kodomo.mallysmith.government.service.GovernmentGrpcService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 

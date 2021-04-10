@@ -1,4 +1,4 @@
-package com.github.kodomo.mallysmith.government.service.bank;
+package com.github.kodomo.mallysmith.government.stub.bank;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

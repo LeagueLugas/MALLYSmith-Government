@@ -1,8 +1,10 @@
-package com.github.kodomo.mallysmith.government.service.core;
+package com.github.kodomo.mallysmith.government.service;
 
 import com.github.kodomo.mallysmith.government.bean.BeanContainer;
-import com.github.kodomo.mallysmith.government.service.bank.BankGrpcStub;
-import com.github.kodomo.mallysmith.government.service.user.UserGrpcStub;
+import com.github.kodomo.mallysmith.government.database.repository.publicservant.PublicServant;
+import com.github.kodomo.mallysmith.government.database.repository.publicservant.PublicServantRepository;
+import com.github.kodomo.mallysmith.government.stub.bank.BankGrpcStub;
+import com.github.kodomo.mallysmith.government.stub.user.UserGrpcStub;
 import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
@@ -19,6 +21,7 @@ public class GovernmentGrpcService extends GovernmentServiceGrpc.GovernmentServi
 
     private final UserGrpcStub userGrpc = BeanContainer.getBean(UserGrpcStub.class);
     private final BankGrpcStub bankGrpc = BeanContainer.getBean(BankGrpcStub.class);
+    private final PublicServantRepository repository = BeanContainer.getBean(PublicServantRepository.class);
 
     @Override
     public void getBasicIncome(Government.GetBasicIncomeRequest request, StreamObserver<Government.GetBasicIncomeResponse> responseObserver) {
@@ -48,6 +51,10 @@ public class GovernmentGrpcService extends GovernmentServiceGrpc.GovernmentServi
             log(uuid + "님이 존재하지 않습니다");
             responseObserver.onError(new StatusRuntimeException(Status.NOT_FOUND));
         }
+    }
+
+    public void test() {
+        PublicServant publicServant = repository.findById(1);
     }
 
 }
