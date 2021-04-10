@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package proto.government;
+
+service GovernmentService {
+    rpc GetBasicIncome (GetBasicIncomeRequest) returns (GetBasicIncomeResponse);
+}
+
+message GetBasicIncomeRequest {
+    string uuid = 1;
+}
+
+message GetBasicIncomeResponse {
+    int64 money = 1;
+}

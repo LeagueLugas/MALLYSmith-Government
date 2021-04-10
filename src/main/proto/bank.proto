@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package proto.bank;
+
+service BankService {
+    rpc OpenAccount (OpenAccountRequest) returns (OpenAccountResponse);
+    rpc GetAccount (GetAccountRequest) returns (GetAccountResponse);
+    rpc Deposit (DepositRequest) returns (DepositResponse);
+}
+
+message OpenAccountRequest {
+    string userId = 1;
+}
+
+message OpenAccountResponse {
+    string userId = 1;
+    int64 money = 2;
+    string createdAt = 3;
+}
+
+message GetAccountRequest {
+    string userId = 1;
+}
+
+message GetAccountResponse {
+    string uesrId = 1;
+    int64 money = 2;
+    string lastHash = 3;
+    string createdAt = 4;
+    string updatedAt = 5;
+}
+
+message DepositRequest {
+    string fromUserId = 1;
+    string toUserId = 2;
+    int64 money = 3;
+}
+
+message DepositResponse {
+    string hash = 1;
+    string fromUserId = 2;
+    string toUserId = 3;
+    int64 fromUserMoney = 4;
+    int64 toUserMoney = 5;
+    int64 depositMoney = 6;
+    string transactionTime = 7;
+}
+
+message Empty {
+}

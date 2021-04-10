@@ -1,0 +1,68 @@
+plugins {
+    id 'java'
+    id "com.google.protobuf" version "0.8.8"
+}
+
+group 'com.github.kodomo'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    implementation("com.google.protobuf:protobuf-java-util:3.13.0")
+    implementation("io.grpc:grpc-protobuf:1.31.1")
+    implementation("io.grpc:grpc-stub:1.31.1")
+    implementation("io.grpc:grpc-netty-shaded:1.31.1")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+ext {
+    set('grpcVersion', '1.32.1')
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/protoGen'
+        }
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.5.1'
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:${grpcVersion}"
+        }
+    }
+
+    generateProtoTasks {
+        ofSourceSet('main').each { task ->
+            task.builtins {
+                java{
+                    outputSubDir = 'protoGen'
+                }
+            }
+            task.plugins {
+                grpc {
+                    outputSubDir = 'protoGen'
+                }
+            }
+        }
+    }
+    generatedFilesBaseDir = "$projectDir/src/"
+}
